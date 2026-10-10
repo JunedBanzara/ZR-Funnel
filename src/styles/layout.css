@@ -1,0 +1,1105 @@
+/* ==========================================================================
+   ZR INTERIOR DESIGN — LAYOUT & SECTIONS
+   Architectural Editorial Monograph Layout System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HEADER / ARCHITECTURAL NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all var(--transition-normal);
+}
+
+.site-header.is-scrolled {
+  position: fixed;
+  padding: 1rem 0;
+  box-shadow: var(--shadow-sm);
+  background-color: rgba(250, 248, 245, 0.98);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.brand-monogram-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-text-main);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-text-main);
+  background-color: transparent;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.brand-heritage-tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 992px) {
+  .site-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-body);
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-bronze);
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 1 — HERO SECTION (MANDATORY PORTRAIT OF MR. ZUBER RAFIK BANZARA)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  padding-top: 8rem;
+  padding-bottom: 5.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+/* Subtle Static Residential Interior Background from FinalImages (Low Opacity, Non-Moving) */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/images/FinalImages/project-apartment.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-section::before {
+    background-position: 70% center;
+    opacity: 0.06;
+  }
+}
+
+.hero-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .hero-editorial-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4.5rem;
+    min-height: calc(88vh - 8rem);
+  }
+}
+
+.hero-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-eyebrow {
+  margin-bottom: 0;
+}
+
+.hero-heritage-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-bronze);
+}
+
+.hero-heritage-marker::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-bronze);
+  border-radius: 50%;
+}
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--color-text-main);
+  margin-bottom: 1.75rem;
+  text-transform: uppercase;
+}
+
+.hero-headline span {
+  display: block;
+  font-style: italic;
+  font-weight: 350;
+  color: var(--color-bronze-dark);
+}
+
+.hero-copy {
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-body);
+  max-width: 580px;
+  margin-bottom: 2.25rem;
+}
+
+/* Designer Citation Block */
+.hero-designer-cite {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--color-bg-subtle);
+  border-left: 2px solid var(--color-bronze);
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius-xs);
+}
+
+.hero-designer-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-main);
+  text-transform: uppercase;
+}
+
+.hero-designer-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-bronze-dark);
+}
+
+.hero-credentials-list {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Hero Portrait Art Direction */
+.hero-portrait-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background-color: #FFFFFF;
+  padding: 1.25rem;
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-xs);
+  transition: transform var(--transition-slow);
+}
+
+.hero-portrait-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: #F0EDE6;
+  border: 1px solid var(--border-subtle);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: contrast(1.02);
+  transition: transform var(--transition-slow);
+}
+
+.hero-portrait-frame:hover .hero-portrait-img {
+  transform: scale(1.02);
+}
+
+.hero-portrait-caption {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hero-portrait-caption-text h4 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.hero-portrait-caption-text span {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  display: block;
+}
+
+.hero-portrait-stamp {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 2 — SELECTED PROJECTS (EDITORIAL GALLERY)
+   -------------------------------------------------------------------------- */
+.section-showcase {
+  padding: var(--space-4xl) 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-header.text-center {
+  text-align: center;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--color-text-body);
+  max-width: 680px;
+  line-height: var(--leading-relaxed);
+}
+
+/* Editorial Project Layout */
+.project-editorial-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Feature Project (Dominant) */
+.project-feature-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+@media (min-width: 992px) {
+  .project-feature-card {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+  }
+}
+
+.project-feature-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.project-feature-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-feature-card:hover .project-feature-img {
+  transform: scale(1.03);
+}
+
+.project-feature-content {
+  padding: clamp(1.75rem, 3vw, 3rem);
+}
+
+.project-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-bronze);
+  margin-bottom: 0.75rem;
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.25rem);
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1.75rem;
+}
+
+.project-meta-specs {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Supporting Asymmetric Grid */
+.project-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .project-sub-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .project-sub-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.project-sub-card {
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.project-sub-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.project-sub-img-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-sub-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-sub-card:hover .project-sub-img {
+  transform: scale(1.04);
+}
+
+.project-sub-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 3 — THE 1990–2026 TIMELINE
+   -------------------------------------------------------------------------- */
+.section-timeline {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.timeline-editorial-track {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bronze) 15%, var(--color-bronze) 85%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .timeline-spine {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .timeline-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+.timeline-node {
+  position: absolute;
+  left: 17px;
+  top: 6px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--color-bg-subtle);
+  border: 2px solid var(--color-bronze);
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .timeline-node {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-content-box {
+  margin-left: 55px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  padding: 2rem 2.25rem;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+@media (min-width: 768px) {
+  .timeline-content-box {
+    margin-left: 0;
+    width: 44%;
+  }
+}
+
+.timeline-content-box:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-bronze-light);
+}
+
+.timeline-year {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-bronze);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-milestone-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  margin-bottom: 0.6rem;
+}
+
+.timeline-milestone-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 6 — PRINCIPAL DESIGNER PROFILE (HIGH-CONTRAST EDITORIAL STYLING)
+   -------------------------------------------------------------------------- */
+#principal-designer {
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  padding: 5.5rem 0;
+}
+
+.designer-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .designer-profile-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4.5rem;
+  }
+}
+
+.designer-portrait-side {
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.designer-matting-frame {
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+}
+
+.designer-matting-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-2xs);
+  display: block;
+}
+
+.designer-badge-overlay {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  right: 1.75rem;
+  background: rgba(18, 18, 17, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 0.9rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-2xs);
+  display: flex;
+  flex-direction: column;
+}
+
+.designer-badge-overlay .badge-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: var(--tracking-wider);
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.designer-badge-overlay .badge-role {
+  font-size: 0.75rem;
+  color: var(--color-bronze-light);
+  letter-spacing: var(--tracking-wide);
+  margin-top: 2px;
+}
+
+.designer-text-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.designer-lead-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: var(--leading-snug);
+  color: var(--color-text-main);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+
+.designer-body-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-body);
+  margin-bottom: 2rem;
+}
+
+/* Credentials Matrix — Pure Crisp White Cards with High-Contrast Charcoal Typography */
+.credentials-matrix {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (min-width: 600px) {
+  .credentials-matrix {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.credential-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-fast);
+}
+
+.credential-item:hover {
+  border-color: var(--color-bronze);
+  box-shadow: 0 8px 24px rgba(143, 114, 86, 0.1);
+  transform: translateY(-2px);
+}
+
+.cred-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(143, 114, 86, 0.12);
+  color: var(--color-bronze);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: var(--radius-2xs);
+}
+
+.cred-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cred-text strong {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #141312; /* Crisp dark obsidian */
+  letter-spacing: var(--tracking-normal);
+  line-height: 1.3;
+}
+
+.cred-text span {
+  font-size: 0.775rem;
+  color: #55514B; /* Refined mineral body color */
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 5 — OUR APPROACH (DESIGN INTENT TO BUILT REALITY)
+   -------------------------------------------------------------------------- */
+.section-approach {
+  padding: var(--space-4xl) 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.approach-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.approach-step-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 2.5rem 2rem;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+@media (min-width: 768px) {
+  .approach-step-card {
+    grid-template-columns: 80px 1fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+.approach-step-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.approach-step-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.approach-step-text h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  margin-bottom: 0.5rem;
+}
+
+.approach-step-text p {
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+.approach-step-visual {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+}
+
+.approach-step-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 6 — THE ₹199 CONSULTATION SPOTLIGHT
+   -------------------------------------------------------------------------- */
+.section-consultation-spotlight {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-dark);
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.consultation-spotlight-box {
+  background-color: var(--color-bg-dark-surface);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 3px solid var(--color-bronze);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border-radius: var(--radius-xs);
+}
+
+.consultation-header-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 860px) {
+  .consultation-header-grid {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.consultation-price-box {
+  background-color: var(--color-bg-dark-accent);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.75rem 2.25rem;
+  border-radius: var(--radius-xs);
+  text-align: center;
+}
+
+.consultation-price-tag {
+  font-family: var(--font-serif);
+  font-size: 3.25rem;
+  font-weight: 700;
+  color: var(--color-bronze-light);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.consultation-agenda-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .consultation-agenda-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .consultation-agenda-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.agenda-pill-card {
+  padding: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xs);
+}
+
+.agenda-num {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-bronze-light);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.agenda-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.agenda-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 7 — FUNNEL SECTION (QUALIFICATION FORM & BOOKING)
+   -------------------------------------------------------------------------- */
+.section-booking-funnel {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-base);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.funnel-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-bg-dark);
+  color: #FFFFFF;
+  padding: 4.5rem 0 2.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+.footer-col-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+}
+
+.footer-contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-light-muted);
+}
+
+.footer-contact-list a:hover {
+  color: var(--color-bronze-light);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--text-xs);
+  color: var(--color-text-light-muted);
+}
+
+/* --------------------------------------------------------------------------
+   STICKY MOBILE CTA
+   -------------------------------------------------------------------------- */
+.sticky-mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(20, 19, 18, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.85rem var(--gutter);
+  z-index: var(--z-sticky);
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .sticky-mobile-cta.is-visible {
+    display: flex;
+  }
+}
+
+.sticky-cta-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-cta-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.sticky-cta-sub {
+  font-size: 0.7rem;
+  color: var(--color-bronze-light);
+}

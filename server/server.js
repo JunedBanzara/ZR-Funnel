@@ -1,0 +1,54 @@
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { handleApiRequest } from './api.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DIST_DIR = path.join(__dirname, '..', 'dist');
+const PORT = process.env.PORT || 3000;
+
+const MIME_TYPES = {
+  '.html': 'text/html',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.svg': 'image/svg+xml',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf'
+};
+
+const server = http.createServer(async (req, res) => {
+  const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+
+  // Route API requests
+  if (url.pathname.startsWith('/api/')) {
+    await handleApiRequest(req, res);
+    return;
+  }
+
+  // Serve static files from dist in production
+  let filePath = path.join(DIST_DIR, url.pathname === '/' ? 'index.html' : url.pathname);
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(DIST_DIR, 'index.html');
+  }
+
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    res.writeHead(200, { 'Content-Type': contentType });
+    fs.createReadStream(filePath).pipe(res);
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found. Run `npm run build` to generate dist folder.');
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`ZR Interior Design Server running at http://localhost:${PORT}`);
+});

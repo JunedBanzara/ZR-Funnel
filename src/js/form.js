@@ -1,0 +1,209 @@
+/**
+ * ZR INTERIOR DESIGN — SHORT PROJECT QUALIFICATION FORM (7 FIELDS)
+ * Collects and validates focused qualification fields prior to payment.
+ */
+
+import { Tracker } from './tracking.js';
+
+export class QualificationForm {
+  constructor(formElement, onSubmitSuccess) {
+    this.form = formElement;
+    this.onSubmitSuccess = onSubmitSuccess;
+    this.formData = {};
+
+    this.init();
+  }
+
+  init() {
+    if (!this.form) return;
+
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+    // Remove invalid styling on user interaction
+    this.form.querySelectorAll('input, select, textarea').forEach((input) => {
+      input.addEventListener('input', () => {
+        this.clearInvalid(input);
+      });
+      input.addEventListener('change', () => {
+        this.clearInvalid(input);
+      });
+    });
+
+    // Restore draft if saved
+    this.restoreDraft();
+  }
+
+  clearInvalid(input) {
+    if (!input) return;
+    input.classList.remove('is-invalid');
+    const group = input.closest('.form-group');
+    if (group) {
+      group.classList.remove('has-error');
+      const err = group.querySelector('.form-error-msg');
+      if (err) err.style.display = 'none';
+    }
+  }
+
+  markInvalid(input, message) {
+    if (!input) return;
+    input.classList.add('is-invalid');
+    const group = input.closest('.form-group');
+    if (group) {
+      group.classList.add('has-error');
+      const err = group.querySelector('.form-error-msg');
+      if (err) {
+        err.textContent = message;
+        err.style.display = 'block';
+      }
+    }
+  }
+
+  highlightGroup(groupName, message) {
+    const group = this.form.querySelector(`[data-group="${groupName}"]`);
+    if (group) {
+      group.classList.add('has-error');
+      const err = group.querySelector('.form-error-msg');
+      if (err) {
+        err.textContent = message;
+        err.style.display = 'block';
+      }
+    }
+  }
+
+  saveDraft(data) {
+    try {
+      localStorage.setItem('zr_qualification_draft', JSON.stringify(data));
+    } catch (e) {
+      // storage unavailable
+    }
+  }
+
+  restoreDraft() {
+    try {
+      const saved = localStorage.getItem('zr_qualification_draft');
+      if (!saved) return;
+      const data = JSON.parse(saved);
+
+      if (data.name) {
+        const el = this.form.querySelector('#fullName');
+        if (el) el.value = data.name;
+      }
+      if (data.phone) {
+        const el = this.form.querySelector('#phoneNumber');
+        if (el) el.value = data.phone;
+      }
+      if (data.location) {
+        const el = this.form.querySelector('#projectLocation');
+        if (el) el.value = data.location;
+      }
+      if (data.propertyType) {
+        const radio = this.form.querySelector(`input[name="propertyType"][value="${data.propertyType}"]`);
+        if (radio) radio.checked = true;
+      }
+      if (data.budgetTier) {
+        const radio = this.form.querySelector(`input[name="budgetTier"][value="${data.budgetTier}"]`);
+        if (radio) radio.checked = true;
+      }
+      if (data.stage) {
+        const radio = this.form.querySelector(`input[name="projectStage"][value="${data.stage}"]`);
+        if (radio) radio.checked = true;
+      }
+      if (data.description) {
+        const el = this.form.querySelector('#projectDescription');
+        if (el) el.value = data.description;
+      }
+    } catch (e) {
+      // ignore parsing error
+    }
+  }
+
+  validate() {
+    let isValid = true;
+
+    // 1. Full Name
+    const nameInput = this.form.querySelector('#fullName');
+    const name = nameInput ? nameInput.value.trim() : '';
+    if (!name || name.length < 2) {
+      isValid = false;
+      this.markInvalid(nameInput, 'Please enter your full name');
+    }
+
+    // 2. Phone / WhatsApp Number
+    const phoneInput = this.form.querySelector('#phoneNumber');
+    const phoneRaw = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+    const isValidPhone = phoneRaw.length === 10 || (phoneRaw.length === 12 && phoneRaw.startsWith('91'));
+    if (!isValidPhone) {
+      isValid = false;
+      this.markInvalid(phoneInput, 'Please enter a valid 10-digit WhatsApp/mobile number');
+    }
+
+    // 3. Project Location
+    const locInput = this.form.querySelector('#projectLocation');
+    const location = locInput ? locInput.value.trim() : '';
+    if (!location || location.length < 2) {
+      isValid = false;
+      this.markInvalid(locInput, 'Please specify project location (e.g. Alkapuri, Sevasi, Gotri, Vadodara)');
+    }
+
+    // 4. Property Type
+    const propType = this.form.querySelector('input[name="propertyType"]:checked');
+    if (!propType) {
+      isValid = false;
+      this.highlightGroup('propertyType', 'Please select property type');
+    }
+
+    // 5. Approximate Project Budget
+    const budget = this.form.querySelector('input[name="budgetTier"]:checked');
+    if (!budget) {
+      isValid = false;
+      this.highlightGroup('budgetTier', 'Please select approximate budget range');
+    }
+
+    // 6. Expected Project Start Date / Stage
+    const stage = this.form.querySelector('input[name="projectStage"]:checked');
+    if (!stage) {
+      isValid = false;
+      this.highlightGroup('projectStage', 'Please select project stage');
+    }
+
+    // 7. Optional Project Description (always valid)
+    const descInput = this.form.querySelector('#projectDescription');
+    const description = descInput ? descInput.value.trim() : '';
+
+    if (!isValid) {
+      const firstError = this.form.querySelector('.has-error, .is-invalid');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return null;
+    }
+
+    const payload = {
+      name,
+      phone: phoneRaw.length === 10 ? `+91 ${phoneRaw.slice(0, 5)} ${phoneRaw.slice(5)}` : `+${phoneRaw}`,
+      phoneRaw,
+      location,
+      propertyType: propType.value,
+      budgetTier: budget.value,
+      stage: stage.value,
+      description,
+      submittedAt: new Date().toISOString()
+    };
+
+    this.saveDraft(payload);
+    return payload;
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = this.validate();
+    if (!data) return;
+
+    // Fire Meta Lead event
+    Tracker.trackLead(data);
+
+    if (typeof this.onSubmitSuccess === 'function') {
+      this.onSubmitSuccess(data);
+    }
+  }
+}

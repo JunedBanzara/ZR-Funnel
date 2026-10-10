@@ -1,0 +1,115 @@
+/* ==========================================================================
+   ZR INTERIOR DESIGN — DESIGN SYSTEM & TOKENS
+   Aesthetic: Bespoke International Architecture Editorial & Luxury Monograph
+   Palette: Warm Ivory Linen, Natural Limestone, Obsidian Charcoal, Bronze
+   ========================================================================== */
+
+:root {
+  /* Editorial Color Palette */
+  --color-bg-base: #FAF8F5;          /* Warm ivory alabaster */
+  --color-bg-subtle: #F2EEE7;        /* Natural limestone travertine */
+  --color-bg-card: #FFFFFF;          /* Pure matte white */
+  --color-bg-card-hover: #FDFCF9;
+  --color-bg-dark: #121211;          /* Deep architectural charcoal */
+  --color-bg-dark-surface: #1B1A18;  /* Dark stone surface */
+  --color-bg-dark-accent: #242220;
+
+  /* Typography Colors */
+  --color-text-main: #141312;        /* Deep obsidian */
+  --color-text-body: #484540;        /* Refined mineral grey */
+  --color-text-muted: #7A756D;       /* Warm muted stone */
+  --color-text-light: #FBF9F5;       /* Warm ivory text on dark surfaces */
+  --color-text-light-muted: #A39E95;
+
+  /* Brand Accent — Architectural Bronze */
+  --color-bronze: #8F7256;           /* Curated architectural bronze */
+  --color-bronze-light: #C4AD97;
+  --color-bronze-dark: #6E533B;
+  --color-bronze-glow: rgba(143, 114, 86, 0.12);
+
+  /* Functional Status */
+  --color-success: #266848;
+  --color-success-bg: #EDF5F0;
+  --color-error: #9E2B2B;
+  --color-error-bg: #FDF0F0;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(20, 19, 18, 0.08);
+  --border-medium: rgba(20, 19, 18, 0.16);
+  --border-strong: rgba(20, 19, 18, 0.28);
+  --border-focus: #8F7256;
+  --border-dark-subtle: rgba(255, 255, 255, 0.1);
+  --border-dark-medium: rgba(255, 255, 255, 0.18);
+
+  /* Typography Stack */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+  --text-hero: clamp(2.5rem, 5vw, 4.75rem);
+
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.12em;
+  --tracking-widest: 0.24em;
+
+  /* Spacing */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6.5rem;
+  --space-5xl: 9rem;
+
+  /* Container Max-Width */
+  --container-max: 1280px;
+  --container-narrow: 880px;
+  --container-wide: 1440px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* Diffused Architectural Shadows */
+  --shadow-sm: 0 2px 8px rgba(20, 19, 18, 0.04);
+  --shadow-md: 0 8px 24px rgba(20, 19, 18, 0.06);
+  --shadow-lg: 0 20px 48px rgba(20, 19, 18, 0.08);
+  --shadow-dark: 0 24px 64px rgba(0, 0, 0, 0.45);
+
+  /* Radii — Crisp Architectural Corners */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Z-Index */
+  --z-base: 1;
+  --z-header: 100;
+  --z-sticky: 150;
+  --z-modal: 300;
+}
